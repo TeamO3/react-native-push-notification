@@ -29,7 +29,7 @@ public class RNPushNotificationListenerService extends GcmListenerService {
         JSONObject data = getPushData(bundle.getString("data"));
         if (data != null) {
             if (!bundle.containsKey("message")) {
-                bundle.putString("message", data.optString("alert", "Notification received"));
+                bundle.putString("message", data.optString("alert", null));
             }
             if (!bundle.containsKey("title")) {
                 bundle.putString("title", data.optString("title", null));
@@ -48,19 +48,19 @@ public class RNPushNotificationListenerService extends GcmListenerService {
         }
 
         // MixPanel variables
-        if (!bundle.containsKey("message")) {
+        if (!bundle.containsKey("message") || bundle.get("message") == null) {
             bundle.putString("message", bundle.getString("mp_message"));
         }
 
-        if (!bundle.containsKey("title")) {
+        if (!bundle.containsKey("title") || bundle.get("title") == null) {
             bundle.putString("title", bundle.getString("mp_title"));
         }
 
-        if (!bundle.containsKey("largeIcon")) {
+        if (!bundle.containsKey("largeIcon") || bundle.get("largeIcon") == null) {
             bundle.putString("largeIcon", bundle.getString("mp_icnm_l"));
         }
 
-        if (!bundle.containsKey("smallIcon")) {
+        if (!bundle.containsKey("smallIcon") || bundle.get("smallIcon") == null) {
             bundle.putString("smallIcon", bundle.getString("mp_icnm"));
         }
 
