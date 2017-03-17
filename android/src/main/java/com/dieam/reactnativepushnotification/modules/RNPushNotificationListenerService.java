@@ -47,6 +47,23 @@ public class RNPushNotificationListenerService extends GcmListenerService {
             }
         }
 
+        // MixPanel variables
+        if (!bundle.containsKey("message")) {
+            bundle.putString("message", bundle.getString("mp_message"));
+        }
+
+        if (!bundle.containsKey("title")) {
+            bundle.putString("title", bundle.getString("mp_title"));
+        }
+
+        if (!bundle.containsKey("largeIcon")) {
+            bundle.putString("largeIcon", bundle.getString("mp_icnm_l"));
+        }
+
+        if (!bundle.containsKey("smallIcon")) {
+            bundle.putString("smallIcon", bundle.getString("mp_icnm"));
+        }
+
         Log.v(LOG_TAG, "onMessageReceived: " + bundle);
 
         // We need to run this on the main thread, as the React code assumes that is true.
